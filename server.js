@@ -2,6 +2,7 @@ const express = require("express");
 
 const mongoose = require("mongoose");
 const routes = require("./routes");
+const config = require("./config/db");
 const app = express();
 const PORT = process.env.PORT || 3001;
 
@@ -16,7 +17,10 @@ app.use(express.json());
 app.use(routes);
 
 // Connect to the Mongo DB
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/elibrary");
+mongoose
+  .connect(config.db, { useNewUrlParser: true })
+  .then(() => console.log("MongoDB connection successful!"))
+  .catch(err => console.error(err));
 
 // Start the API server
 app.listen(PORT, function() {
