@@ -14,7 +14,6 @@
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev || node server.js",
     "start:prod": "node server.js",
     "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\"",
-    "build": "cd client && npm run build",
     "heroku-postbuild": "cd client && npm install && npm run build"
   },
   "author": "",
