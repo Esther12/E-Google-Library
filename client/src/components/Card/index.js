@@ -16,7 +16,7 @@ function Card (props){
                 <h5 className="card-title">{props.authors}</h5>
                 <p className="card-text">{props.description}</p>
                 <a href={props.link} className="btn btn-primary">Check The Book</a>
-                <botton href={props.link} className="btn btn-primary" onClick = {saveBook}>Check The Book</botton>
+                <botton href={props.link} className="btn btn-primary" onClick = {saveBook}>Save This Book</botton>
                 </div>
             </div>
             </div>

@@ -50,7 +50,8 @@ class Search extends Component {
   };
 
   handleFormSave = event =>{
-      API.checkSaved(this.state.results[event])
+      console.log(event,this.state.results[event]);
+      API.saveBook(this.state.results[event])
       .then(res=>{
         if (res.data.status === "error") {
           throw new Error(res.data.message);
