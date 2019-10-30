@@ -16,7 +16,7 @@ function App() {
         <Nav />
         <Wrapper>
           <Route exact path="/" component={BookSearch} />
-          <Route exact path="/saved" component={CheckSaved} />
+          <Route exact path="/checksaved" component={CheckSaved} />
         </Wrapper>
         <Footer />
       </div>
