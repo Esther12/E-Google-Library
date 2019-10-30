@@ -22,7 +22,7 @@ class Search extends Component {
   handleInputChange = event => {
     this.setState({ search: event.target.value });
   };
- 
+
   handleFormSubmit = event => {
     event.preventDefault();
     API.getBook(this.state.search.trim())
@@ -32,16 +32,14 @@ class Search extends Component {
         }
         console.log(res.data.items[1].volumeInfo);
         let bookDetial = [];
-        for(let i =0; i<res.data.items.length; i++){
-            bookDetial.push({
-              title : res.data.items[i].volumeInfo.title,
-              authors : res.data.items[i].volumeInfo.authors.toString(),
-              description : res.data.items[i].volumeInfo.description,
-              image : res.data.items[i].volumeInfo.imageLinks.smallThumbnail,
-              link : res.data.items[i].volumeInfo.infoLink
-            }
-            
-            )
+        for (let i = 0; i < res.data.items.length; i++) {
+          bookDetial.push({
+            title: res.data.items[i].volumeInfo.title,
+            authors: res.data.items[i].volumeInfo.authors.toString(),
+            description: res.data.items[i].volumeInfo.description,
+            image: res.data.items[i].volumeInfo.imageLinks.smallThumbnail,
+            link: res.data.items[i].volumeInfo.infoLink
+          });
         }
         console.log(bookDetial);
         this.setState({ results: bookDetial });
@@ -49,21 +47,28 @@ class Search extends Component {
       .catch(err => this.setState({ error: err.message }));
   };
 
-  handleFormSave = event =>{
-      console.log(event,this.state.results[event]);
-      API.saveBook(this.state.results[event])
-      .then(res=>{
-        if (res.data.status === "error") {
-          throw new Error(res.data.message);
-        }
-      })
-  }
-  displayCards = ()=>{
+  handleFormSave = event => {
+    console.log(event, this.state.results[event]);
+    API.saveBook(this.state.results[event]).then(res => {
+      if (res.data.status === "error") {
+        throw new Error(res.data.message);
+      }
+    });
+  };
+
+  displayCards = () => {
     return this.state.results.map((item, index) => (
-        <Card title = {item.title} link = {item.link} description ={item.description} image = {item.image}  authors = {item.authors} value = {this.handleFormSave} index = {index}></Card>
-    )
-    );
-  }
+      <Card
+        title={item.title}
+        link={item.link}
+        description={item.description}
+        image={item.image}
+        authors={item.authors}
+        value={this.handleFormSave}
+        index={index}
+      ></Card>
+    ));
+  };
   render() {
     return (
       <div>
@@ -72,9 +77,9 @@ class Search extends Component {
           <SearchForm
             handleFormSubmit={this.handleFormSubmit}
             handleInputChange={this.handleInputChange}
-            handleFormSave = {this.handleFormSave}
+            handleFormSave={this.handleFormSave}
           />
-         {this.displayCards()}
+          {this.displayCards()}
         </Wrapper>
       </div>
     );

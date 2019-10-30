@@ -1,9 +1,10 @@
 import React from "react";
 
-function Card(props) {
-  function saveBook() {
-    props.value(props.index);
-  }
+function SavedBookCard(props) {
+  const deleteBook = () => {
+    console.log("book id: ", props.id);
+    props.handleFormDelete(props.id);
+  };
   return (
     <div className="col12 card mb-3">
       <div className="row no-gutters">
@@ -18,11 +19,11 @@ function Card(props) {
               Check The Book
             </a>
             <botton
-              href={props.link}
-              className="btn btn-success"
-              onClick={saveBook}
+              href={props.id}
+              className="btn btn-danger"
+              onClick={deleteBook}
             >
-              Save This Book
+              Delete
             </botton>
           </div>
         </div>
@@ -31,4 +32,4 @@ function Card(props) {
   );
 }
 
-export default Card;
+export default SavedBookCard;
