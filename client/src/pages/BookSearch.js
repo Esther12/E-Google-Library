@@ -9,7 +9,8 @@ class Search extends Component {
     search: "",
     books: "",
     results: [],
-    error: ""
+    error: "",
+    refresh: 0
   };
 
   // When the component mounts, get a list of all available base breeds and update this.state.breeds

@@ -5,7 +5,8 @@ import Card from "../components/SavedBookCard";
 
 class CheckSaved extends Component {
   state = {
-    books: []
+    books: [],
+    refresh: 1
   };
   getBook = () => {
     console.log("geting the book");
@@ -22,6 +23,7 @@ class CheckSaved extends Component {
       if (res.data.status === "error") {
         throw new Error(res.data.message);
       }
+      this.getBook();
     });
   };
   displayCards = () => {
